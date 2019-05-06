@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>test-sql</groupId>
+  <artifactId>test-sql</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <build>
+  
+  	<plugins>
+  		<plugin>
+  			<groupId>org.codehaus.mojo</groupId>
+  			<artifactId>sql-maven-plugin</artifactId>
+  			<version>1.5</version>  		
+  		<dependencies>
+  		      <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc6</artifactId>
+                <version>11.2.0</version>
+                <systemPath>src/main/resources/lib/ojdbc6.jar</systemPath>
+                <scope>system</scope>                               
+              </dependency> 
+            </dependencies>
+             <configuration>
+                        <driver>oracle.jdbc.driver.OracleDriver</driver>
+                        <url>jdbc:oracle:thin:SYSTEM@localhost:1521/xe</url>
+                        <username>SYSTEM</username>
+                        <password>system</password>
+                        <autocommit>true</autocommit>
+                       
+                        <srcFiles>
+                            <srcFile>src/main/resources/sql/drop_all_tables.sql</srcFile>
+                        </srcFiles>
+                        <delimiter>/</delimiter>
+                        <delimiterType>row</delimiterType>
+                    </configuration>
+            <executions>
+                <execution>
+                    <id>create-schema</id>
+                    <phase>process-test-resources</phase>
+                    <goals>
+                        <goal>execute</goal>
+                    </goals>                   
+                </execution>
+            </executions>
+            </plugin>
+  	</plugins>
+  	
+  </build>
+  
+</project>
