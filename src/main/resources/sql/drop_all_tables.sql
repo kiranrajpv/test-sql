@@ -49,4 +49,5 @@ BEGIN
   EXECUTE IMMEDIATE 'ALTER SESSION SET SQL_TRACE TRUE';
   EXECUTE IMMEDIATE 'DROP TABLE bonus';
 END;
+-- authored for ci/cd pipeline setup 
 /
