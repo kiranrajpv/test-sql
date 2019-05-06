@@ -5,7 +5,7 @@ CREATE OR REPLACE PROCEDURE raise_emp_salary (column_value NUMBER,
    v_column VARCHAR2(30);
    sql_stmt  VARCHAR2(200);
 BEGIN
--- determine if a valid column name has been given as input a cicd script
+  /*determine if a valid column name has been given as input a cicd script*/
   SELECT COLUMN_NAME INTO v_column FROM USER_TAB_COLS 
     WHERE TABLE_NAME = 'EMPLOYEES' AND COLUMN_NAME = emp_column;
   sql_stmt := 'UPDATE employees SET salary = salary + :1 WHERE ' 
